@@ -1,0 +1,114 @@
+
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Formulario Labs</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="#" id="main-form" (ngSubmit)="submit()">
+
+        <div class="input-nome">
+          <mat-form-field appearance="fill" >
+            <mat-label>Nombre</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="nome"
+                [(ngModel)]="usuario.nome"
+                name="nome"
+                required minlength="1"
+                required maxlength="50"
+                #inpNome="ngModel"
+              >
+              <mat-error>
+                <span *ngIf="inpNome.errors?.['required']">Completa este campo.</span>
+                <span *ngIf="inpNome.errors?.['minlength']">Almenos un caracter.</span>
+                <span *ngIf="inpNome.errors?.['maxlength']">No mas de 50 caracteres.</span>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-nome">
+          <mat-form-field appearance="fill" >
+            <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                placeholder="email"
+                [(ngModel)]="usuario.email"
+                name="email"
+                required minlength="8"
+                required maxlength="50"
+                #inpEmail="ngModel"
+              >
+              <mat-error>
+                <span *ngIf="inpEmail.errors?.['required']">Completa este campo.</span>
+                <span *ngIf="inpEmail.errors?.['minlength']">Almenos 8 caracteres.</span>
+                <span *ngIf="inpEmail.errors?.['maxlength']">No mas de 50 caracteres.</span>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-senha inp">
+          <mat-form-field appearance="fill" class="grow">
+            <mat-label>Contrasena</mat-label>
+              <input
+                type="password"
+                matInput
+                placeholder="contraseña de 8 a 30 carácteres"
+                [(ngModel)]="usuario.senha"
+                name="senha"
+                required minlength="8"
+                required maxlength="30"
+                #inpSenha="ngModel"
+              >
+            <mat-error>
+              <span *ngIf="inpSenha.errors?.['required']">Completa este campo.</span>
+              <span *ngIf="inpSenha.errors?.['minlength']">Minimo con 8 carácteres.</span>
+              <span *ngIf="inpSenha.errors?.['maxlength']">Maximo con 30 carácteres.</span>
+              <span *ngIf="inpSenha.value != inpSenhaConfirm.value">Tiene de ser Iguales.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-senhaConfirma inp">
+          <mat-form-field appearance="fill" class="grow">
+            <mat-label>Confirmar contrasena</mat-label>
+              <input
+                type="password"
+                matInput
+                placeholder="Confirme su contraseña"
+                [(ngModel)]="usuario.senhaConfirma"
+                name="senha"
+                required minlength="8"
+                required maxlength="30"
+                #inpSenhaConfirm="ngModel"
+              >
+              <mat-error>
+                <span *ngIf="inpSenhaConfirm.errors?.['required']">Completa este campo.</span>
+                <span *ngIf="inpSenhaConfirm.errors?.['minlength']">Minimo con 8 carácteres.</span>
+                <span *ngIf="inpSenhaConfirm.errors?.['maxlength']">Maximo con 30 carácteres.</span>
+                <span *ngIf="inpSenha.value != inpSenhaConfirm.value">Tiene de ser Iguales.</span>
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row col">
+          <button
+          mat-raised-button
+          (click)="showDialog()"
+          type="submit"
+          color="primary"
+          class="grow"
+          [disabled]="inpNome.invalid ||
+           inpEmail.invalid ||
+          inpSenha.invalid || inpSenhaConfirm.invalid || inpSenha.value !=
+          inpSenhaConfirm.value"
+          >
+          Registrar
+        </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
